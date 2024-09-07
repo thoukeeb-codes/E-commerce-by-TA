@@ -1,8 +1,6 @@
 import Store from "./Store";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import Product from "./Product";
 
 function StoreR() {
   const [storeItem, setStoreItem] = useState([

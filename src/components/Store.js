@@ -1,12 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Box,
   Heading,
-  Stack,
-  Button,
   Input,
-  Text,
-  Flex,
   Spacer,
   Tag,
   SimpleGrid,
@@ -16,35 +12,18 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import Header from "./Header";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Product from "./Product";
+import StoreItem from "./StoreItem";
 
-const StoreItem = ({ title, price, image }) => {
-  return (
-    <Box p={4} borderRadius="lg" borderWidth="1px">
-      <Center>
-        <Image src={image} w={24} />
-      </Center>
-      <Heading noOfLines={2} size="sm" fontWeight="normal">
-        {title}
-      </Heading>
-      <Spacer />
-
-      <Tag mt={4}>$ {price}</Tag>
-    </Box>
-  );
-};
 function Store({ items, loading }) {
   const [filteredItems, setFilteredItems] = useState(items);
   useEffect(() => {
     setFilteredItems(items);
   }, [items]);
   return (
-    <Box p={4}>
+    <Box p={4} bg="gray.50">
       {loading ? (
         <Center mt={6}>
-          <Spinner />
+          <Spinner color="teal.500" />
         </Center>
       ) : (
         <Box p={2}>
@@ -57,6 +36,8 @@ function Store({ items, loading }) {
             }}
             placeholder="Search"
             mt={4}
+            bg="white"
+            borderColor="teal.200"
           />
           <SimpleGrid columns={4} spacing={4} mt={4} p={2}>
             {filteredItems.map((item) => {
@@ -73,20 +54,8 @@ function Store({ items, loading }) {
           </SimpleGrid>
         </Box>
       )}
-      {/* <Input ref={itemNameRef} mt={10} placeholder="Item name" />
-      <Input ref={itemPriceRef} mt={2} placeholder="Price" type="number" />
-      <Button
-        mt={2}
-        onClick={() => {
-          onItemAdd({
-            title: itemNameRef.current.value,
-            price: itemPriceRef.current.value,
-          });
-        }}
-      >
-        Add Item
-      </Button> */}
     </Box>
   );
 }
+
 export default Store;
